@@ -19,6 +19,7 @@ namespace WindowsFormsApp2
 
         int  kullaniciadi, sifre;
         int hata_var = 0;
+        int giris_hakki = 3;
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -29,24 +30,33 @@ namespace WindowsFormsApp2
             if (textBox2.Text != "123")
             {
                 hata_var = 2;
+                giris_hakki--;
             }
 
             if (textBox2.Text != "123" && textBox1.Text != "admin")
             {
                 hata_var = 3;
+                giris_hakki--;
             }
             else if (hata_var == 1)
             {
-                MessageBox.Show("kullanıcı ve şifre hatalı");
+                MessageBox.Show("kullanıcı ve şifre hatalı + kalan giriş hakkı :" + giris_hakki);
             }
             else if (hata_var==2)
             {
-                MessageBox.Show("şifre hatalı");
+                MessageBox.Show("şifre hatalı kalan giriş hakkı :" + giris_hakki);
             }
             else
             {
                 MessageBox.Show("giriş başarılı");
             }
+
+            if (giris_hakki == 0)
+            {
+                button1.Enabled = false;
+                textBox1.Enabled = false;
+                textBox2.Enabled = false;
+            } 
 
 
 
